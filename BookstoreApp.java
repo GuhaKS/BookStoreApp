@@ -23,6 +23,7 @@ class Book {
         this.price = price;
         this.quantity = quantity;
     }
+    
     public Book(int id, String title, String author, int publicationYear, double price, int quantity) {
         this.id = id;
         this.title = title;
