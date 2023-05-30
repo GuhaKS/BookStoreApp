@@ -89,6 +89,7 @@ class Book {
 }
 
 class BookInventory {
+    
     private List<Book> books;
     private int nextBookId;
     public BookInventory() {
@@ -185,6 +186,7 @@ class BookInventory {
 }
 
 class BookstoreApp {
+    
     private static Scanner scanner;
     private static BookInventory bookInventory;
 
