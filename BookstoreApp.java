@@ -124,6 +124,7 @@ class BookInventory {
         }
         return book;
     }
+    
     public static void saveBooksToFile(List<Book> books) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("D:\\microsoft\\Bookinventory\\BookstoreApp\\BookstoreApp.txt"))) {
 
@@ -134,6 +135,7 @@ class BookInventory {
             e.printStackTrace();
         }
     }
+    
     public List<Book> getBookList() {
         List<Book> books = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("D:\\microsoft\\Bookinventory\\BookstoreApp\\BookstoreApp.txt"))) {
@@ -193,7 +195,6 @@ class BookstoreApp {
     public static void main(String[] args) {
         bookInventory = new BookInventory();
         scanner = new Scanner(System.in);
-
         while (true) {
             System.out.println("\nBook Inventory System");
             System.out.println("1. Add a book");
@@ -406,6 +407,7 @@ class SearchCriteria{
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
     }
+    
     public List<Book> searchBooksTitle(List<Book> books) {
         List<Book> searchResults = new ArrayList<>();
         for (Book book : books) {
@@ -415,6 +417,7 @@ class SearchCriteria{
         }
         return searchResults;
     }
+    
     public List<Book> searchBooksByAuthor(List<Book> books) {
         List<Book> searchResults = new ArrayList<>();
         for (Book book : books) {
@@ -424,6 +427,7 @@ class SearchCriteria{
         }
         return searchResults;
     }
+    
     public List<Book> searchBooksByPublicationYear(List<Book> books) {
         List<Book>  searchResults = new ArrayList<>();
         for (Book book : books) {
@@ -433,6 +437,7 @@ class SearchCriteria{
         }
         return searchResults;
     }
+    
     public List<Book> searchBooksByPriceRange(List<Book> books) {
         List<Book> searchResults = new ArrayList<>();
         for (Book book : books) {
