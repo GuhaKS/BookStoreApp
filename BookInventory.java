@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-class BookInventory {
+public class BookInventory {
     
     private List<Book> books;
     private int nextBookId;
