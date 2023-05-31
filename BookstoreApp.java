@@ -23,7 +23,7 @@ class Book {
         this.price = price;
         this.quantity = quantity;
     }
-    
+
     public Book(int id, String title, String author, int publicationYear, double price, int quantity) {
         this.id = id;
         this.title = title;
@@ -71,7 +71,6 @@ class Book {
     public void setPrice(double price) {
         this.price = price;
     }
-
     public int getQuantity() {
         return quantity;
     }
@@ -89,7 +88,6 @@ class Book {
 }
 
 class BookInventory {
-    
     private List<Book> books;
     private int nextBookId;
     public BookInventory() {
@@ -124,7 +122,6 @@ class BookInventory {
         }
         return book;
     }
-    
     public static void saveBooksToFile(List<Book> books) {
         try (PrintWriter writer = new PrintWriter(new FileWriter("D:\\microsoft\\Bookinventory\\BookstoreApp\\BookstoreApp.txt"))) {
 
@@ -135,7 +132,6 @@ class BookInventory {
             e.printStackTrace();
         }
     }
-    
     public List<Book> getBookList() {
         List<Book> books = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("D:\\microsoft\\Bookinventory\\BookstoreApp\\BookstoreApp.txt"))) {
@@ -185,16 +181,48 @@ class BookInventory {
         searchCriteria.setPrice(minPrice,maxPrice);
         return searchCriteria.searchBooksByPriceRange(books);
     }
+
+    protected void generateReport() {
+        
+        int totalBooks = 0;
+        double totalPrice = 0;
+        double highestPrice = Double.MIN_VALUE;
+        double lowestPrice = Double.MAX_VALUE;
+        Book bookWithHighestPrice = null;
+        Book bookWithLowestPrice = null;
+        for (Book book : getBookList()) {
+            totalBooks++;
+            double price = book.getPrice();
+            totalPrice += price;
+
+            if (price > highestPrice) {
+                highestPrice = price;
+                bookWithHighestPrice = book;
+            }
+
+            if (price < lowestPrice) {
+                lowestPrice = price;
+                bookWithLowestPrice = book;
+            }
+        }
+        double averagePrice = totalPrice / totalBooks;
+
+        System.out.println("Inventory Report");
+        System.out.println("Total number of books: " + totalBooks);
+        System.out.println("Average price: " + averagePrice);
+        System.out.println("Book with the highest price: " + bookWithHighestPrice.getTitle());
+        System.out.println("Book with the lowest price: " + bookWithLowestPrice.getTitle());
+    }
 }
 
 class BookstoreApp {
-    
     private static Scanner scanner;
     private static BookInventory bookInventory;
 
     public static void main(String[] args) {
         bookInventory = new BookInventory();
         scanner = new Scanner(System.in);
+
         while (true) {
             System.out.println("\nBook Inventory System");
             System.out.println("1. Add a book");
@@ -202,7 +230,8 @@ class BookstoreApp {
             System.out.println("3. Display all books");
             System.out.println("4. Update book details");
             System.out.println("5. Remove a book");
-            System.out.println("6. Exit");
+            System.out.println("6.Generate Report");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline character
@@ -224,6 +253,9 @@ class BookstoreApp {
                     removeBook();
                     break;
                 case 6:
+                    generateReport();
+                    break;
+                case 7:
                     System.out.println("Exiting the program...");
                     return;
                 default:
@@ -383,6 +415,12 @@ class BookstoreApp {
             System.out.println("Book removed: " + book.getTitle());
         }
     }
+
+    protected static void generateReport(){
+        bookInventory.generateReport();
+    }
+
+
 }
 
 class SearchCriteria{
@@ -407,7 +445,6 @@ class SearchCriteria{
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
     }
-    
     public List<Book> searchBooksTitle(List<Book> books) {
         List<Book> searchResults = new ArrayList<>();
         for (Book book : books) {
@@ -417,7 +454,6 @@ class SearchCriteria{
         }
         return searchResults;
     }
-    
     public List<Book> searchBooksByAuthor(List<Book> books) {
         List<Book> searchResults = new ArrayList<>();
         for (Book book : books) {
@@ -427,7 +463,6 @@ class SearchCriteria{
         }
         return searchResults;
     }
-    
     public List<Book> searchBooksByPublicationYear(List<Book> books) {
         List<Book>  searchResults = new ArrayList<>();
         for (Book book : books) {
@@ -437,7 +472,6 @@ class SearchCriteria{
         }
         return searchResults;
     }
-    
     public List<Book> searchBooksByPriceRange(List<Book> books) {
         List<Book> searchResults = new ArrayList<>();
         for (Book book : books) {
