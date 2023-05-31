@@ -6,10 +6,10 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 class BookstoreApp {
+    
     private static Scanner scanner;
     private static BookInventory bookInventory;
     private static Logger logger;
-
     private static String filePath;
 
     public static void main(String[] args) {
@@ -29,8 +29,6 @@ class BookstoreApp {
         }
 
         while (true) {
-
-
             System.out.println("\nBook Inventory System");
             System.out.println("1. Add a book");
             System.out.println("2. Search a book");
@@ -236,6 +234,5 @@ class BookstoreApp {
     protected static void generateReport(){
         bookInventory.generateReport();
     }
-
 
 }
