@@ -107,7 +107,7 @@ class BookInventory {
         return searchCriteria.searchBooksByPriceRange(books);
     }
 
-    protected void generateReport() {
+    public void generateReport() {
 
         int totalBooks = books.size();
         double totalPrice = books.stream().mapToDouble(Book::getPrice).sum();
