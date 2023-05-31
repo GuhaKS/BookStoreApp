@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.stream.Collectors;
 
-class SearchCriteria{
+public class SearchCriteria{
 
     private String title;
     private String author;
