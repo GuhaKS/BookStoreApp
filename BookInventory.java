@@ -6,14 +6,16 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 class BookInventory {
+    
     private List<Book> books;
     private int nextBookId;
-
     private static String filePath;
+    
     public BookInventory() {
         this.books = getBookList();
         nextBookId = 1;
     }
+    
     public void addBook(Book book) {
         book.setId(nextBookId++);
         books.add(book);
@@ -26,6 +28,7 @@ class BookInventory {
                 .findFirst()
                 .orElse(null);
     }
+    
     public List<Book> updateBook(){
         return books;
     }
@@ -38,6 +41,7 @@ class BookInventory {
         }
         return book;
     }
+    
     public static void saveBooksToFile(List<Book> books) {
         Properties properties = new Properties();
         try {
@@ -52,6 +56,7 @@ class BookInventory {
             e.printStackTrace();
         }
     }
+    
     public List<Book> getBookList() {
         Properties properties = new Properties();
         try {
