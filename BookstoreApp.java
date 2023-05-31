@@ -5,7 +5,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-class BookstoreApp {
+public class BookstoreApp {
     
     private static Scanner scanner;
     private static BookInventory bookInventory;
